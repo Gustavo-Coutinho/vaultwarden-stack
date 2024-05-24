@@ -1,9 +1,6 @@
-# Vaultwarden Self Host
+# Vaultwarden Stack
 
-📢 Note: This project was known as Bitwarden_Self_Host and has been renamed to separate itself from the official Bitwarden server in the hopes of avoiding confusion and trademark/branding issues. Please see [#23](https://github.com/JulianRunnels/Vaultwarden_Self_Host/discussions/23#discussion-4464560) for more explanation.
-
-***
-
+This is a fork from the original [Vaulwarden_Self_Host](https://github.com/JulianRunnels/Vaultwarden_Self_Host)
 For more details please read blog [here](https://medium.com/@julianrunnels/set-up-your-own-personal-password-vault-313d76374046)
 
 This project is aimed at creating a private Vaultwarden instance on your local LAN for devices on your personal network to be able to access. The docker-compose files contains 3 containers, the bitwarden unoffical rust backend, an nginx reverse proxy for HTTPS, and a backup container. To faciliate the connection with Bitwarden's iOS apps via HTTPS, we are going to create our own private CA, so we can create trusted certificates, since self-signed certs won't work with the native app.
