@@ -4,8 +4,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-mkdir -p /opt/bitwarden-backup
-echo "Backup folder has been created at /opt/bitwarden-backup"
+mkdir -p /opt/vaultwarden-backup
+echo "Backup folder has been created at /opt/vaultwarden-backup"
 
 chmod +x get-docker.sh
 ./get-docker.sh

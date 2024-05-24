@@ -1,14 +1,14 @@
 # Vaultwarden Self Host
 
-📢 Note: This project was known as vaultwarden_Self_Host and has been renamed to separate itself from the official vaultwarden server in the hopes of avoiding confusion and trademark/branding issues. Please see [#23](https://github.com/JulianRunnels/Vaultwarden_Self_Host/discussions/23#discussion-4464560) for more explanation.
+📢 Note: This project was known as Bitwarden_Self_Host and has been renamed to separate itself from the official Bitwarden server in the hopes of avoiding confusion and trademark/branding issues. Please see [#23](https://github.com/JulianRunnels/Vaultwarden_Self_Host/discussions/23#discussion-4464560) for more explanation.
 
 ***
 
 For more details please read blog [here](https://medium.com/@julianrunnels/set-up-your-own-personal-password-vault-313d76374046)
 
-This project is aimed at creating a private Vaultwarden instance on your local LAN for devices on your personal network to be able to access. The docker-compose files contains 3 containers, the vaultwarden unoffical rust backend, an nginx reverse proxy for HTTPS, and a backup container. To faciliate the connection with vaultwarden's iOS apps via HTTPS, we are going to create our own private CA, so we can create trusted certificates, since self-signed certs won't work with the native app.
+This project is aimed at creating a private Vaultwarden instance on your local LAN for devices on your personal network to be able to access. The docker-compose files contains 3 containers, the bitwarden unoffical rust backend, an nginx reverse proxy for HTTPS, and a backup container. To faciliate the connection with Bitwarden's iOS apps via HTTPS, we are going to create our own private CA, so we can create trusted certificates, since self-signed certs won't work with the native app.
 
-__PLEASE NOTE THAT THIS SETUP USES [Vaultwarden](https://github.com/dani-garcia/vaultwarden) WHICH IS AN UNOFFICAL COMMUNITY CREATED BACKEND. IT IS REGULARLY UPDATED AND HAS SEVERAL ADVANTAGES INCLUDING ABILITY TO RUN ON RASPBERRY PI, A MUCH LOWER OVERALL RESOURCE FOOTPRINT, AND FULL vaultwarden FUNCTIONALITY, INCLUDING PREMIUM FEATURES__
+__PLEASE NOTE THAT THIS SETUP USES [Vaultwarden](https://github.com/dani-garcia/vaultwarden) WHICH IS AN UNOFFICAL COMMUNITY CREATED BACKEND. IT IS REGULARLY UPDATED AND HAS SEVERAL ADVANTAGES INCLUDING ABILITY TO RUN ON RASPBERRY PI, A MUCH LOWER OVERALL RESOURCE FOOTPRINT, AND FULL BITWARDEN FUNCTIONALITY, INCLUDING PREMIUM FEATURES__
 
 ## To install ##
 __Note: to install on a Raspberry Pi, you will need up update the tags for the containers in docker-compose.yml with the values in the comments of that page__
@@ -38,7 +38,7 @@ To download, I recommend just using scp or any other file transfer:
 3. Restart `sudo docker-compose down && sudo docker-compose up -d --build`
 
 #### Note for iOS installation ####
-After you transfer the cert over to iOS, to have it work with native vaultwarden app, you will need to  _enable full trust_.
+After you transfer the cert over to iOS, to have it work with native Bitwarden app, you will need to  _enable full trust_.
 To do this:
 * Make sure the certificate is installed
 * Go to _Settings_ -> _General_ -> _About_ -> _Certificate Trust Settings_ or just search for _Trusted Certificates_  
@@ -63,9 +63,9 @@ Once you have PiPVN, or any OpenVPN based solution set up you can enable a split
   * `push "route 192.168.1.0 255.255.255.0"` (Change the 192 value to your personal private ip range)
 * Comment out `#push "redirect-gateway def1"`
 
-Obviously this does put a little bit of a barrier in the way of using vaultwarden, but it is a small tradeoff to have full and complete control over your passwords and other important data. Of course, its very easy to adapt this repo to create a full publicly accessible instance, simply by adding port forwarding in your router, or running it in the cloud. Personally, I would stay away from both of those options, as they defeat the whole purpose of setting up this instance to have a private vault.
+Obviously this does put a little bit of a barrier in the way of using Bitwarden, but it is a small tradeoff to have full and complete control over your passwords and other important data. Of course, its very easy to adapt this repo to create a full publicly accessible instance, simply by adding port forwarding in your router, or running it in the cloud. Personally, I would stay away from both of those options, as they defeat the whole purpose of setting up this instance to have a private vault.
 
 ## Backups
 
-A backup file will be created at `/opt/bitwarden-backup/backup.sqlite3` with root permissions.
+A backup file will be created at `/opt/vaultwarden-backup/backup.sqlite3` with root permissions.
 Personally I use [rclone](https://rclone.org/onedrive/) to sync a folder with OneDrive, then copy that backup into the OneDrive folder daily, but however you want to move that backup folder out works.

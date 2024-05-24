@@ -26,13 +26,13 @@ services:
 
   bw_backup:
     image: bruceforce/bitwarden-backup:latest #swap tag to rpi3 to run on a raspberry pi
-    container_name: bitwarden-backup
+    container_name: vaultwarden-backup
     restart: on-failure
     depends_on:
       - vaultwarden
     volumes:
       - ./data/vaultwarden:/data
-      - /opt/bitwarden-backup:/backup
+      - /opt/vaultwarden-backup:/backup
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     environment:
