@@ -4,8 +4,8 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
-mkdir -p /opt/Bitwarden-Backup
-echo "Backup folder has been created at /opt/Bitwarden-Backup"
+mkdir -p /opt/bitwarden-backup
+echo "Backup folder has been created at /opt/bitwarden-backup"
 
 chmod +x get-docker.sh
 ./get-docker.sh
@@ -16,7 +16,7 @@ apt install -y python3 python3-pip
 pip3 install docker-compose
 
 clear
-echo "Would you like to create your own personal CA and SSL certificate to enable HTTPS with bitwarden?"
+echo "Would you like to create your own personal CA and SSL certificate to enable HTTPS with vaultwarden?"
 select yn in "Yes" "No"; do
     case $yn in
 	Yes ) sudo ./create_ssl.sh && break;;

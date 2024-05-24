@@ -1,14 +1,14 @@
 version: '3'
 
 services:
-  bitwarden:
+  vaultwarden:
     image: vaultwarden/server:latest #swap tag to raspberry to run on a raspberry pi
     container_name: vaultwarden
     expose:
       - "80"
       - "3012"
     volumes:
-      - ./data/bitwarden:/data
+      - ./data/vaultwarden:/data
     restart: on-failure
     environment:
       WEBSOCKET_ENABLED: 'true'
@@ -25,14 +25,14 @@ services:
       - ./data/ssl:/etc/ssl
 
   bw_backup:
-    image: bruceforce/vaultwarden-backup:latest #swap tag to rpi3 to run on a raspberry pi
-    container_name: vaultwarden-backup
+    image: bruceforce/bitwarden-backup:latest #swap tag to rpi3 to run on a raspberry pi
+    container_name: bitwarden-backup
     restart: on-failure
     depends_on:
-      - bitwarden
+      - vaultwarden
     volumes:
-      - ./data/bitwarden:/data
-      - /opt/Bitwarden-Backup:/backup
+      - ./data/vaultwarden:/data
+      - /opt/bitwarden-backup:/backup
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     environment:

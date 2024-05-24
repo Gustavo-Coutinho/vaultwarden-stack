@@ -9,6 +9,6 @@ else
   cert=$1
 fi
 
-cp data/ssl/certs/bitwarden.crt data/ssl/certs/bitwarden.crt.bak
-openssl ca -revoke data/ssl/newcerts/$cert.pem -config data/ssl/bitwarden.ext
-openssl ca -config data/ssl/bitwarden.ext -extensions server_cert -days 365 -notext -md sha256 -in data/ssl/csr/bitwarden.csr -out data/ssl/certs/bitwarden.crt
+cp data/ssl/certs/vaultwarden.crt data/ssl/certs/vaultwarden.crt.bak
+openssl ca -revoke data/ssl/newcerts/$cert.pem -config data/ssl/vaultwarden.ext
+openssl ca -config data/ssl/vaultwarden.ext -extensions server_cert -days 365 -notext -md sha256 -in data/ssl/csr/vaultwarden.csr -out data/ssl/certs/vaultwarden.crt

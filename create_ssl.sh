@@ -23,22 +23,22 @@ if [[ ! -f "data/ssl/private/myCA.key" ]]; then
 	chmod 500 data/ssl/private/myCA.key
 	echo "Creating personal CA"
 	echo ""
-	openssl req -config data/ssl/bitwarden.ext -x509 -new -sha256 -days 3650 -extensions v3_ca -key data/ssl/private/myCA.key -out data/ssl/certs/myCA.crt
+	openssl req -config data/ssl/vaultwarden.ext -x509 -new -sha256 -days 3650 -extensions v3_ca -key data/ssl/private/myCA.key -out data/ssl/certs/myCA.crt
 	clear
 fi 
 	
-echo "Creating key for bitwarden certificate"
+echo "Creating key for vaultwarden certificate"
 echo ""
-openssl genrsa -out data/ssl/private/bitwarden.key 2048
-echo "Creating request for Bitwarden certificate, please fill out the FQDN with the name that the instance will be located at"
+openssl genrsa -out data/ssl/private/vaultwarden.key 2048
+echo "Creating request for vaultwarden certificate, please fill out the FQDN with the name that the instance will be located at"
 echo ""
-openssl req -config data/ssl/bitwarden.ext -key data/ssl/private/bitwarden.key -new -sha256 -out data/ssl/csr/bitwarden.csr
+openssl req -config data/ssl/vaultwarden.ext -key data/ssl/private/vaultwarden.key -new -sha256 -out data/ssl/csr/vaultwarden.csr
 echo ""
 clear
-echo -n "Please enter your FQDN for your bitwarden instance: "
+echo -n "Please enter your FQDN for your vaultwarden instance: "
 read answer
-sed -i "/DNS.1 = */c\DNS.1 = $answer" ./data/ssl/bitwarden.ext
-sed -i "/DNS.2 = */c\DNS.2 = www.$answer" ./data/ssl/bitwarden.ext
-openssl ca -config data/ssl/bitwarden.ext -extensions server_cert -days 365 -notext -md sha256 -in data/ssl/csr/bitwarden.csr -out data/ssl/certs/bitwarden.crt
+sed -i "/DNS.1 = */c\DNS.1 = $answer" ./data/ssl/vaultwarden.ext
+sed -i "/DNS.2 = */c\DNS.2 = www.$answer" ./data/ssl/vaultwarden.ext
+openssl ca -config data/ssl/vaultwarden.ext -extensions server_cert -days 365 -notext -md sha256 -in data/ssl/csr/vaultwarden.csr -out data/ssl/certs/vaultwarden.crt
 echo ""
 echo "Your personal CA has been created, please make sure to install myCA.crt as a trusted root CA in all devices you want to connect to this instance"
